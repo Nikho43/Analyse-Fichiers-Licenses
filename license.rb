@@ -21,7 +21,7 @@ def my_display myhash
 finalhash = myhash.sort_by {|key,value| value}.reverse
 
 finalhash.each_with_index do |(key,value), index|
-  if index == 10
+  if index == ARGV[0].to_i
     break 
   end
 
@@ -32,11 +32,17 @@ end
 end
 
 
-words = File.read('LICENSE') .split
+Dir['licenses/*'].each do |license|
+  
+puts license
+
+words = File.read(license).split 
 
 unique_words = words.uniq  
 
 hash = license_unique words, unique_words
 
 my_display hash
+
+end
 
